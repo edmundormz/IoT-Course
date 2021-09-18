@@ -1,12 +1,12 @@
-#define SMS_TARGET  "+520123456789"
-
 // Configure TinyGSM library
-#define TINY_GSM_MODEM_SIM800      // Modem is SIM800
-#define TINY_GSM_RX_BUFFER   1024  // Set RX buffer to 1Kb
+#define TINY_GSM_MODEM_SIM800       // Modem is SIM800
+#define TINY_GSM_RX_BUFFER   1024   // Set RX buffer to 1Kb
+#define SMS_TARGET  "+523331323435" // The number should be +52 (for Mexico) and 10 digit number
 
+// Libraries
 #include <TinyGsmClient.h>
 
-// TTGO T-Call pins
+// Configure TTGO T-Call pins
 #define MODEM_RST            5
 #define MODEM_PWKEY          4
 #define MODEM_POWER_ON       23
@@ -20,6 +20,7 @@
 // Set serial for AT commands (to SIM800 module)
 #define SerialAT  Serial1
 
+// Create modem object
 TinyGsm modem(SerialAT);
 
 void setup() {
@@ -36,12 +37,11 @@ void setup() {
 
   // Set GSM module baud rate and UART pins
   SerialAT.begin(115200, SERIAL_8N1, MODEM_RX, MODEM_TX);
-  delay(3000);
-
   SerialMon.println("Initializing modem...");
-  modem.restart();
-
-  String smsMessage = "YOUR NAME HERE";
+  //modem.restart();
+  modem.init();
+  delay(3000);
+  String smsMessage = "Your_Name_Here";
   if(modem.sendSMS(SMS_TARGET, smsMessage)){
     SerialMon.print("SMS Sent: ");
     SerialMon.println(smsMessage);
