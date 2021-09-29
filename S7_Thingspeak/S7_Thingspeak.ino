@@ -28,7 +28,7 @@ unsigned long lastTime = 0;
 unsigned long timerDelay = 30000;
 
 unsigned long myChannelNumber = 1;
-const char * myWriteAPIKey = "VUEC1XYWOZWJJ57L";
+const char * myWriteAPIKey = "xxxxxxxxx";
 
 // Instances creation
 NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE);
